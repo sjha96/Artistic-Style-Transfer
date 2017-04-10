@@ -15,12 +15,12 @@ from scipy.misc import imsave
 height = 512
 width = 512
 
-content_image_path = 'SelfPotrait.jpg'
+content_image_path = 'input_images/SelfPotrait.jpg'
 content_image = Image.open(content_image_path)
 content_image = content_image.resize((height, width))
 
 
-style_image_path = 'starry_night.jpg'
+style_image_path = 'style_images/scream.jpg'
 style_image = Image.open(style_image_path)
 style_image = style_image.resize((height, width))
 
@@ -65,7 +65,7 @@ layers = dict([(layer.name, layer.output) for layer in model.layers])
 print(layers)
 
 content_weight = 0.025
-style_weight = 5.0
+style_weight = 10.0
 total_variation_weight = 1.0
 
 
@@ -171,5 +171,5 @@ x[:, :, 2] += 123.68
 x = np.clip(x, 0, 255).astype('uint8')
 
 img = Image.fromarray(x)
-img.save('SelfPotrait_starry.png')
+img.save('SelfPotrait_scream.png')
 img.show()
